@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :teams
   resources :leagues
   devise_scope :user do
 	  root :to => 'devise/sessions#new'
