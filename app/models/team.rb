@@ -1,4 +1,4 @@
 class Team < ApplicationRecord
   belongs_to :league
-  validates :name, :league, :coach
+  validates :name, :league, presence: true
 end

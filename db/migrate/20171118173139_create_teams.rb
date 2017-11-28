@@ -5,11 +5,11 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :coach, null: false
 
-      t.integer :MP
-      t.integer :W
-      t.integer :D
-      t.integer :L
-      t.integer :Pts
+      t.integer :MP, default: 0
+      t.integer :W, default: 0
+      t.integer :D, default: 0
+      t.integer :L, default: 0
+      t.integer :Pts, default: 0
 
       t.timestamps
     end

@@ -14,22 +14,22 @@ ActiveRecord::Schema.define(version: 20171118173139) do
 
   create_table "leagues", force: :cascade do |t|
     t.string   "title",                  null: false
-    t.integer  "teams",      default: 5, null: false
+    t.integer  "nums",       default: 5, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "teams", force: :cascade do |t|
     t.integer  "league_id"
-    t.string   "name",       null: false
-    t.string   "coach",      null: false
-    t.integer  "MP"
-    t.integer  "W"
-    t.integer  "D"
-    t.integer  "L"
-    t.integer  "Pts"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                   null: false
+    t.string   "coach",                  null: false
+    t.integer  "MP",         default: 0
+    t.integer  "W",          default: 0
+    t.integer  "D",          default: 0
+    t.integer  "L",          default: 0
+    t.integer  "Pts",        default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["league_id"], name: "index_teams_on_league_id"
   end
 

@@ -12,8 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :league_id %>
-    <%= f.text_field :league_id %>
+    <p>
+      <%= @team.league.title %>
+    </p>
+    <%= f.hidden_field :league_id, value: @team.league.id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :coach %>
+    <%= f.text_field :coach %>
   </div>
 
   <div class="actions">

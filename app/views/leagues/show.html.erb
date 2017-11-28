@@ -3,4 +3,32 @@
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>
 
-<%= link_to 'Add Team', new_team_path(league_id: @league) %>
+<table>
+  <thead>
+    <tr>
+      <th> Team Name </th>
+      <th> MP </th>
+      <th> W </th>
+      <th> D </th>
+      <th> L </th>
+      <th> Pts </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @league.team.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.MP %></td>
+        <td><%= team.W %></td>
+        <td><%= team.D %></td>
+        <td><%= team.L %></td>
+        <td><%= team.Pts %></td>
+      </tr>
+    <% end %>
+    <% (1..@league.nums).each do |i| %>
+      <tr>
+        <td> <%= link_to 'Add Team', new_team_path(league_id: @league) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
