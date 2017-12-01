@@ -16,10 +16,11 @@
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label 'Number Of Teams' %>
-    <%= f.number_field :nums %>
-  </div>
+  <% if current_page?(action: 'new') %>
+    <div class="field">
+      <%= f.label 'Number Of Teams' %>
+      <%= f.number_field :nums %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>
