@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_league_path(@league) %> |
-<%= link_to 'Back', leagues_path %>
+<%= link_to 'Back', leagues_path %> |
+<%= link_to 'Add result', new_fixture_path(league_id: @league) %>
+
 
 <table>
   <thead>
@@ -32,3 +34,8 @@
     <% end %>
   </tbody>
 </table>
+
+<% @league.fixture.each do |fixture| %>
+<p> <%= fixture.home.name %> <%= fixture.homegoals %> - <%= fixture.awaygoals %> <%=fixture.away.name %> </p>
+
+<% end %>
