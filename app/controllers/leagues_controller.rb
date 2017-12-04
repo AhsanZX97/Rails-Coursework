@@ -1,5 +1,7 @@
 class LeaguesController < ApplicationController
   before_action :set_league, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /leagues
   # GET /leagues.json
@@ -25,6 +27,7 @@ class LeaguesController < ApplicationController
   # POST /leagues.json
   def create
     @league = League.new(league_params)
+    @league.user = current_user
 
     respond_to do |format|
       if @league.save
@@ -69,6 +72,6 @@ class LeaguesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def league_params
-      params.require(:league).permit(:title, :teams)
+      params.require(:league).permit(:title, :nums)
     end
 end

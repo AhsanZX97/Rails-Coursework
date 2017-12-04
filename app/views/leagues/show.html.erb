@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %> |
+<% if current_user == @league.user %>
+<%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Add result', new_fixture_path(league_id: @league) %>
+<% end %>
 
 
 <table>
@@ -17,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @league.team.each do |team| %>
+    <% @league.team.order("Pts DESC").each do |team| %>
       <tr>
         <td><%= team.name %></td>
         <td><%= team.MP %></td>
@@ -35,7 +36,7 @@
   </tbody>
 </table>
 
-<% @league.fixture.each do |fixture| %>
+<% @league.fixture.order("created_at DESC").each do |fixture| %>
 <p> <%= fixture.home.name %> <%= fixture.homegoals %> - <%= fixture.awaygoals %> <%=fixture.away.name %> </p>
 
 <% end %>

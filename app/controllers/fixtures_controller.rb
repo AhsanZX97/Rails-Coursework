@@ -1,6 +1,8 @@
 class FixturesController < ApplicationController
   before_action :set_fixture, only: [:show, :edit, :update, :destroy]
   before_action :set_league, only: [:new, :create]
+  before_action :authenticate_user!
+
 
   # GET /fixtures
   # GET /fixtures.json
@@ -31,6 +33,32 @@ class FixturesController < ApplicationController
       if @fixture.save
         format.html { redirect_to @league, notice: 'Fixture was successfully created.' }
         format.json { render :show, status: :created, location: @fixture }
+
+        if @fixture.homegoals > @fixture.awaygoals
+          @fixture.home.update_attribute(:MP, @fixture.home.MP + 1)
+          @fixture.home.update_attribute(:W, @fixture.home.W + 1)
+          @fixture.home.update_attribute(:Pts, @fixture.home.Pts + 3)
+
+          @fixture.away.update_attribute(:MP, @fixture.away.MP + 1)
+          @fixture.away.update_attribute(:L, @fixture.away.L + 1)
+
+        elsif @fixture.homegoals < @fixture.awaygoals
+          @fixture.away.update_attribute(:MP, @fixture.away.MP + 1)
+          @fixture.away.update_attribute(:W, @fixture.away.W + 1)
+          @fixture.away.update_attribute(:Pts, @fixture.away.Pts + 3)
+
+          @fixture.home.update_attribute(:MP, @fixture.home.MP + 1)
+          @fixture.home.update_attribute(:L, @fixture.home.L + 1)
+        else
+          @fixture.away.update_attribute(:MP, @fixture.away.MP + 1)
+          @fixture.away.update_attribute(:D, @fixture.away.D + 1)
+          @fixture.away.update_attribute(:Pts, @fixture.away.Pts + 1)
+
+          @fixture.home.update_attribute(:MP, @fixture.home.MP + 1)
+          @fixture.home.update_attribute(:D, @fixture.home.D + 1)
+          @fixture.home.update_attribute(:Pts, @fixture.home.Pts + 1)
+        end
+
       else
         format.html { render :new }
         format.json { render json: @fixture.errors, status: :unprocessable_entity }
@@ -45,6 +73,7 @@ class FixturesController < ApplicationController
       if @fixture.update(fixture_params)
         format.html { redirect_to @fixture, notice: 'Fixture was successfully updated.' }
         format.json { render :show, status: :ok, location: @fixture }
+
       else
         format.html { render :edit }
         format.json { render json: @fixture.errors, status: :unprocessable_entity }
