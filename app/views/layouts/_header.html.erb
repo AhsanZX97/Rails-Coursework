@@ -1,0 +1,15 @@
+<%- if controller_name != 'sessions' && !user_signed_in? %>
+  <%= link_to "Enter", new_user_session_path %><br />
+<% end -%>
+<% if controller_name == "leagues" && action_name == "show" %>
+	<% if current_user == @league.user %>
+		<%= link_to 'Edit', edit_league_path(@league) %>
+		|  <%= link_to 'Add result', new_fixture_path(league_id: @league) %> |
+	<% end %>
+<% end %>
+
+<% if user_signed_in? %>
+	<%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+<% end %>
+
+<%= link_to('Contact Us', contact_path) %>  

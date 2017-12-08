@@ -1,0 +1,26 @@
+<%= form_tag('/home/contact', :method => :post) %>
+
+  <div class="field">
+    <%= label_tag :name, "Name" %>
+    <%= text_field_tag :name, '', title: "Enter Name", size: 50 %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :email, t('.email') %>
+    <%= email_field_tag :email, '', title: t('.enter_email') %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :telephone, t('.telephone') %>
+    <%= telephone_field_tag :telephone, '', title: t('.enter_telephone') %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :message, t('.message') %>
+    <%= text_field_tag :message, '', title: t('.enter_message'), size: 100 %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "submit" %>
+
+  </div>

@@ -1,10 +1,4 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Back', leagues_path %> |
-<% if current_user == @league.user %>
-<%= link_to 'Edit', edit_league_path(@league) %> |
-<%= link_to 'Add result', new_fixture_path(league_id: @league) %>
-<% end %>
-
 
 <table>
   <thead>
