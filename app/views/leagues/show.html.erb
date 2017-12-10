@@ -1,36 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-4">
+    <table class="pure-table pure-table-horizontal">
+      <thead>
+        <caption>League table</caption>
+        <tr>
+          <th> Team Name </th>
+          <th> MP </th>
+          <th> W </th>
+          <th> D </th>
+          <th> L </th>
+          <th> Pts </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @league.team.order("Pts DESC").each do |team| %>
+          <tr>
+            <td><%= team.name %></td>
+            <td><%= team.MP %></td>
+            <td><%= team.W %></td>
+            <td><%= team.D %></td>
+            <td><%= team.L %></td>
+            <td><%= team.Pts %></td>
+          </tr>
+        <% end %>
+        <% (1..@league.nums).each do |i| %>
+          <tr>
+            <td> <%= link_to 'Add Team', new_team_path(league_id: @league) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th> Team Name </th>
-      <th> MP </th>
-      <th> W </th>
-      <th> D </th>
-      <th> L </th>
-      <th> Pts </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @league.team.order("Pts DESC").each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td><%= team.MP %></td>
-        <td><%= team.W %></td>
-        <td><%= team.D %></td>
-        <td><%= team.L %></td>
-        <td><%= team.Pts %></td>
-      </tr>
-    <% end %>
-    <% (1..@league.nums).each do |i| %>
-      <tr>
-        <td> <%= link_to 'Add Team', new_team_path(league_id: @league) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% @league.fixture.order("created_at DESC").each do |fixture| %>
-<p> <%= fixture.home.name %> <%= fixture.homegoals %> - <%= fixture.awaygoals %> <%=fixture.away.name %> </p>
-
-<% end %>
+  <div class="col-sm-4">
+    <table class="pure-table pure-table-horizontal">
+      <thead>
+        <caption>Fixtures</caption>
+        <tr>
+          <th> Home Team </th>
+          <th> Score </th>
+          <th> Away Team </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @league.fixture.order("created_at DESC").each do |fixture| %>
+          <tr>
+            <td><%= fixture.home.name %></td>
+            <td><%= fixture.homegoals %> - <%= fixture.awaygoals %></td>
+            <td><%=fixture.away.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

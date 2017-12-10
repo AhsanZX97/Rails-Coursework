@@ -1,15 +1,27 @@
-<%- if controller_name != 'sessions' && !user_signed_in? %>
-  <%= link_to "Enter", new_user_session_path %><br />
-<% end -%>
-<% if controller_name == "leagues" && action_name == "show" %>
-	<% if current_user == @league.user %>
-		<%= link_to 'Edit', edit_league_path(@league) %>
-		|  <%= link_to 'Add result', new_fixture_path(league_id: @league) %> |
-	<% end %>
-<% end %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">League Generator</a>
+    </div>
+    <ul class="nav navbar-nav">
+    	<%- if controller_name != 'sessions' && !user_signed_in? %>
+		  <li><%= link_to('Enter', new_user_session_path ) %></li>
+		<% end -%> 
+		<% if controller_name == "leagues" && action_name == "show" %>
+			<% if current_user == @league.user %>
+				<li><%= link_to 'Edit', edit_league_path(@league) %></li>
+				<li><%= link_to 'Add result', new_fixture_path(league_id: @league) %></li>
+			<% end %>
+		<% end %>
+		<% if controller_name == "leagues" && action_name == "index" %>
+			<li><%= link_to 'New League', new_league_path %></li>
+		<% end %>
 
-<% if user_signed_in? %>
-	<%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-<% end %>
+		<% if user_signed_in? %>
+			<li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>        
+		<% end %>
 
-<%= link_to('Contact Us', contact_path) %>  
+		<li><%= link_to('Contact Us', contact_path) %></li> 
+    </ul>
+  </div>
+</nav>
