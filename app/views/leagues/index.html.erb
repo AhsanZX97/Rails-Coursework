@@ -1,20 +1,23 @@
 <h1>Leagues</h1>
 
-<table class ="index">
-  <thead>
-    <tr>
-      <th> Leagues</th>
-    </tr>
-  </thead>
+<div id="table-wrapper">
+  <div id="table-scroll">
+    <table class ="index">
+      <thead>
+        <tr>
+          <th> Leagues</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @leagues.each do |league| %>
-      <tr>
-        <td><%= league.title %></td>
-        <td><%= link_to 'Show', league %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @leagues.each do |league| %>
+          <tr>
+            <td><%= league.title %></td>
+            <td><%= link_to 'Show', league %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<br>

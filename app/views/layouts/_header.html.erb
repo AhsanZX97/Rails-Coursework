@@ -4,7 +4,7 @@
       <a class="navbar-brand">League Generator</a>
     </div>
     <ul class="nav navbar-nav">
-    	<%- if controller_name != 'sessions' && !user_signed_in? %>
+    	<%- if controller_name == 'home' %>
 		  <li><%= link_to('Enter', new_user_session_path ) %></li>
 		<% end -%> 
 		<% if controller_name == "leagues" && action_name == "show" %>

@@ -4,7 +4,6 @@
 
 $(document).on "turbolinks:load", ->
   $('#pick').change ->
-   $(".select option[value='what']").remove()  
-   pick = $('#pick').val()
    $('#hidden').show()
+   $('.jumbotron').css('height','500px')
   return

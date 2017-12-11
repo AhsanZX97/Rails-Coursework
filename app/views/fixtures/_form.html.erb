@@ -20,23 +20,23 @@
 
   <div class="field" id ="pick">
     <%= f.label 'Home team' %>
-    <%= f.collection_select :home_id, @league.team, :id, :name %>
+    <%= f.collection_select :home_id, @league.team, :id, :name, {:include_blank => 'Select a home team'} %>
   </div>
 
   <div id="hidden">
     <div class="field">
       <%= f.label 'Away team' %>
-      <%= f.collection_select :away_id, @league.team, :id, :name, {:class => 'select'} %>
+      <%= f.collection_select :away_id, @league.team, :id, :name %>
     </div>
 
     <div class="field">
       <%= f.label 'Home Goal' %>
-      <%= f.number_field :homegoals %>
+      <%= f.number_field :homegoals, min: 0 %>
     </div>
 
     <div class="field">
       <%= f.label 'Away Goal' %>
-      <%= f.number_field :awaygoals %>
+      <%= f.number_field :awaygoals, min: 0 %>
     </div>
 
     <div class="actions">

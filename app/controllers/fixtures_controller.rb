@@ -30,7 +30,11 @@ class FixturesController < ApplicationController
     @fixture = @league.fixture.new(fixture_params)
 
     respond_to do |format|
-      if @fixture.save
+      if @fixture.home == @fixture.away
+        format.html {redirect_to new_fixture_path(league_id: @league)}
+        flash[:notice] = "Home team and away team cannot be the same"
+        
+      elsif @fixture.save
         format.html { redirect_to @league, notice: 'Fixture was successfully created.' }
         format.json { render :show, status: :created, location: @fixture }
 
@@ -60,8 +64,8 @@ class FixturesController < ApplicationController
         end
 
       else
-        format.html { render :new }
-        format.json { render json: @fixture.errors, status: :unprocessable_entity }
+        format.html {redirect_to new_fixture_path(league_id: @league)}
+        flash[:notice] = @fixture.errors.full_messages.to_sentence
       end
     end
   end

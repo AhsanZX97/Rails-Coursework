@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
-  authenticated :user do
-    root "leagues#index"
-  end
-
-  unauthenticated do
-    root 'home#home'
-  end
+  root 'home#home'
 
   get :home, to: 'home#home'
 
@@ -18,6 +12,10 @@ Rails.application.routes.draw do
   resources :leagues
   devise_scope :user do
 
+    authenticated :user do
+      get "/users/sign_in" => "leagues#index"
+    end
+    
 	  get "/sign_in" => "leagues#index"
 	  get "/sign_up" => "leagues#index", as: "new_user_registration"
   end
