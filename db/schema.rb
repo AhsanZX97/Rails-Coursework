@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 20171204145603) do
 
   create_table "fixtures", force: :cascade do |t|
-    t.integer  "league_id",  null: false
-    t.integer  "home_id",    null: false
-    t.integer  "away_id",    null: false
-    t.integer  "homegoals",  null: false
-    t.integer  "awaygoals",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "league_id",              null: false
+    t.integer  "home_id",                null: false
+    t.integer  "away_id",                null: false
+    t.integer  "homegoals",  default: 0, null: false
+    t.integer  "awaygoals",  default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["away_id"], name: "index_fixtures_on_away_id"
     t.index ["home_id"], name: "index_fixtures_on_home_id"
     t.index ["league_id"], name: "index_fixtures_on_league_id"

@@ -2,6 +2,11 @@
   <strong>League:</strong>
   <%= @team.league.title %>
 </p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<p>
+  <strong>Team Name:</strong>
+  <%= @team.name %>
+</p>
+<p>
+  <strong>Coach:</strong>
+  <%= @team.coach %>
+</p>

@@ -19,7 +19,7 @@
   <% if current_page?(action: 'new') %>
     <div class="field">
       <%= f.label 'Number Of Teams' %>
-      <%= f.number_field :nums %>
+      <%= f.number_field :nums, min: 0, max: 10 %>
     </div>
   <% end %>
 

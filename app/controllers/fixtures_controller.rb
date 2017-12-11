@@ -3,25 +3,9 @@ class FixturesController < ApplicationController
   before_action :set_league, only: [:new, :create]
   before_action :authenticate_user!
 
-
-  # GET /fixtures
-  # GET /fixtures.json
-  def index
-    @fixtures = Fixture.all
-  end
-
-  # GET /fixtures/1
-  # GET /fixtures/1.json
-  def show
-  end
-
   # GET /fixtures/new
   def new
     @fixture = @league.fixture.new
-  end
-
-  # GET /fixtures/1/edit
-  def edit
   end
 
   # POST /fixtures
@@ -67,31 +51,6 @@ class FixturesController < ApplicationController
         format.html {redirect_to new_fixture_path(league_id: @league)}
         flash[:notice] = @fixture.errors.full_messages.to_sentence
       end
-    end
-  end
-
-  # PATCH/PUT /fixtures/1
-  # PATCH/PUT /fixtures/1.json
-  def update
-    respond_to do |format|
-      if @fixture.update(fixture_params)
-        format.html { redirect_to @fixture, notice: 'Fixture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @fixture }
-
-      else
-        format.html { render :edit }
-        format.json { render json: @fixture.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /fixtures/1
-  # DELETE /fixtures/1.json
-  def destroy
-    @fixture.destroy
-    respond_to do |format|
-      format.html { redirect_to fixtures_url, notice: 'Fixture was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

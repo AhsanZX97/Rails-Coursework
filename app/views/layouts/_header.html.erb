@@ -17,6 +17,10 @@
 			<li><%= link_to 'New League', new_league_path %></li>
 		<% end %>
 
+		<% if controller_name == "teams" && action_name == "show" %>
+			<li><%= link_to 'Edit', edit_team_path(@team) %></li>
+		<% end %>
+
 		<% if user_signed_in? %>
 			<li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>        
 		<% end %>

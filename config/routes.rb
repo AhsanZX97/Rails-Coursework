@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'contact', to: 'home#contact'
   post 'request_contact', to: 'home#request_contact'
 
-  resources :fixtures
-  resources :teams
+  resources :fixtures, only: [:new]
+  resources :teams, only: [:new,:show,:edit]
   resources :leagues
   devise_scope :user do
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 	  get "/sign_up" => "leagues#index", as: "new_user_registration"
   end
   
-  devise_for :users
+  devise_for :users, :skip => :registerable
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

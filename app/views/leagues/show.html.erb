@@ -17,7 +17,11 @@
           <tbody>
             <% @league.team.order("Pts DESC").each do |team| %>
               <tr>
-                <td><%= team.name %></td>
+                <% if current_user == @league.user %>
+                  <td><%= link_to team.name, team %></td>
+                <% else %>
+                  <td><%= team.name %></td>
+                <% end %>
                 <td><%= team.MP %></td>
                 <td><%= team.W %></td>
                 <td><%= team.D %></td>

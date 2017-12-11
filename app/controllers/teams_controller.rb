@@ -3,12 +3,6 @@ class TeamsController < ApplicationController
   before_action :set_league, only: [:new, :create]
   before_action :authenticate_user!
 
-  # GET /teams
-  # GET /teams.json
-  def index
-    @teams = Team.all
-  end
-
   # GET /teams/1
   # GET /teams/1.json
   def show
@@ -51,17 +45,6 @@ class TeamsController < ApplicationController
         format.html { render :edit }#
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /teams/1
-  # DELETE /teams/1.json
-  def destroy
-    @league.update_attribute(:nums, @league.nums + 1)
-    @team.destroy
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
