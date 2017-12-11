@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     root 'home#home'
   end
 
+  get :home, to: 'home#home'
+
   get 'contact', to: 'home#contact'
   post 'request_contact', to: 'home#request_contact'
 
